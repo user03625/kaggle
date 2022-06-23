@@ -1,0 +1,773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module helpers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>helpers</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/kaggle/working/helpers.py">/kaggle/working/helpers.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;Copyright&nbsp;2021&nbsp;Kaggle&nbsp;Inc<br>
+#<br>
+#&nbsp;Licensed&nbsp;under&nbsp;the&nbsp;Apache&nbsp;License,&nbsp;Version&nbsp;2.0&nbsp;(the&nbsp;"License");<br>
+#&nbsp;you&nbsp;may&nbsp;not&nbsp;use&nbsp;this&nbsp;file&nbsp;except&nbsp;in&nbsp;compliance&nbsp;with&nbsp;the&nbsp;License.<br>
+#&nbsp;You&nbsp;may&nbsp;obtain&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;License&nbsp;at<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a><br>
+#<br>
+#&nbsp;Unless&nbsp;required&nbsp;by&nbsp;applicable&nbsp;law&nbsp;or&nbsp;agreed&nbsp;to&nbsp;in&nbsp;writing,&nbsp;software<br>
+#&nbsp;distributed&nbsp;under&nbsp;the&nbsp;License&nbsp;is&nbsp;distributed&nbsp;on&nbsp;an&nbsp;"AS&nbsp;IS"&nbsp;BASIS,<br>
+#&nbsp;WITHOUT&nbsp;WARRANTIES&nbsp;OR&nbsp;CONDITIONS&nbsp;OF&nbsp;ANY&nbsp;KIND,&nbsp;either&nbsp;express&nbsp;or&nbsp;implied.<br>
+#&nbsp;See&nbsp;the&nbsp;License&nbsp;for&nbsp;the&nbsp;specific&nbsp;language&nbsp;governing&nbsp;permissions&nbsp;and<br>
+#&nbsp;limitations&nbsp;under&nbsp;the&nbsp;License.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="kaggle_environments.html">kaggle_environments</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="helpers.html#Board">Board</a>
+</font></dt><dt><font face="helvetica, arial"><a href="helpers.html#Cell">Cell</a>
+</font></dt><dt><font face="helvetica, arial"><a href="helpers.html#Fleet">Fleet</a>
+</font></dt><dt><font face="helvetica, arial"><a href="helpers.html#Player">Player</a>
+</font></dt><dt><font face="helvetica, arial"><a href="helpers.html#Shipyard">Shipyard</a>
+</font></dt><dt><font face="helvetica, arial"><a href="helpers.html#ShipyardAction">ShipyardAction</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="enum.html#Enum">enum.Enum</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="helpers.html#ShipyardActionType">ShipyardActionType</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="kaggle_environments.helpers.html#Configuration">kaggle_environments.helpers.Configuration</a>(<a href="builtins.html#dict">builtins.dict</a>, <a href="typing.html#Generic">typing.Generic</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="helpers.html#Configuration">Configuration</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="kaggle_environments.helpers.html#Observation">kaggle_environments.helpers.Observation</a>(<a href="builtins.html#dict">builtins.dict</a>, <a href="typing.html#Generic">typing.Generic</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="helpers.html#Observation">Observation</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Board">class <strong>Board</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Board">Board</a>(raw_observation:&nbsp;Dict[str,&nbsp;Any],&nbsp;raw_configuration:&nbsp;Union[helpers.<a href="#Configuration">Configuration</a>,&nbsp;Dict[str,&nbsp;Any]],&nbsp;next_actions:&nbsp;Union[List[Dict[str,&nbsp;str]],&nbsp;NoneType]&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Board-__deepcopy__"><strong>__deepcopy__</strong></a>(self, _) -&gt; 'Board'</dt></dl>
+
+<dl><dt><a name="Board-__getitem__"><strong>__getitem__</strong></a>(self, point: Union[Tuple[int, int], kaggle_environments.helpers.Point]) -&gt; helpers.Cell</dt><dd><tt>This&nbsp;method&nbsp;will&nbsp;wrap&nbsp;the&nbsp;supplied&nbsp;position&nbsp;to&nbsp;fit&nbsp;within&nbsp;the&nbsp;board&nbsp;size&nbsp;and&nbsp;return&nbsp;the&nbsp;cell&nbsp;at&nbsp;that&nbsp;location.<br>
+e.g.&nbsp;on&nbsp;a&nbsp;3x3&nbsp;board,&nbsp;board[2,&nbsp;1]&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;board[5,&nbsp;1]</tt></dd></dl>
+
+<dl><dt><a name="Board-__init__"><strong>__init__</strong></a>(self, raw_observation: Dict[str, Any], raw_configuration: Union[helpers.Configuration, Dict[str, Any]], next_actions: Union[List[Dict[str, str]], NoneType] = None) -&gt; None</dt><dd><tt>Creates&nbsp;a&nbsp;board&nbsp;from&nbsp;the&nbsp;provided&nbsp;observation,&nbsp;configuration,&nbsp;and&nbsp;next_actions&nbsp;as&nbsp;specified&nbsp;by<br>
+https://github.com/Kaggle/kaggle-environments/blob/master/kaggle_environments/envs/kore/kore.json<br>
+<a href="#Board">Board</a>&nbsp;tracks&nbsp;players&nbsp;(by&nbsp;id),&nbsp;fleets&nbsp;(by&nbsp;id),&nbsp;shipyards&nbsp;(by&nbsp;id),&nbsp;and&nbsp;cells&nbsp;(by&nbsp;position).<br>
+Each&nbsp;entity&nbsp;contains&nbsp;both&nbsp;key&nbsp;values&nbsp;(e.g.&nbsp;fleet.player_id)&nbsp;as&nbsp;well&nbsp;as&nbsp;entity&nbsp;references&nbsp;(e.g.&nbsp;fleet.player).<br>
+References&nbsp;are&nbsp;deep&nbsp;and&nbsp;chainable&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[fleet.kore&nbsp;for&nbsp;player&nbsp;in&nbsp;board.players&nbsp;for&nbsp;fleet&nbsp;in&nbsp;player.fleets]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fleet.player.shipyards[0].cell.north.east.fleet<br>
+Consumers&nbsp;should&nbsp;not&nbsp;set&nbsp;or&nbsp;modify&nbsp;any&nbsp;attributes&nbsp;except&nbsp;and&nbsp;<a href="#Shipyard">Shipyard</a>.next_action</tt></dd></dl>
+
+<dl><dt><a name="Board-__str__"><strong>__str__</strong></a>(self) -&gt; str</dt><dd><tt>The&nbsp;board&nbsp;is&nbsp;printed&nbsp;in&nbsp;a&nbsp;grid&nbsp;with&nbsp;the&nbsp;following&nbsp;rules:<br>
+Capital&nbsp;letters&nbsp;are&nbsp;shipyards<br>
+Lower&nbsp;case&nbsp;letters&nbsp;are&nbsp;fleets<br>
+Digits&nbsp;are&nbsp;cell&nbsp;kore&nbsp;and&nbsp;scale&nbsp;from&nbsp;0-9&nbsp;directly&nbsp;proportional&nbsp;to&nbsp;a&nbsp;value&nbsp;between&nbsp;0&nbsp;and&nbsp;self.<strong>configuration</strong>.max_cell_kore<br>
+<a href="#Player">Player</a>&nbsp;1&nbsp;is&nbsp;letter&nbsp;a/A<br>
+<a href="#Player">Player</a>&nbsp;2&nbsp;is&nbsp;letter&nbsp;b/B<br>
+etc.</tt></dd></dl>
+
+<dl><dt><a name="Board-get_cell_at_point"><strong>get_cell_at_point</strong></a>(self: 'Board', position: kaggle_environments.helpers.Point)</dt></dl>
+
+<dl><dt><a name="Board-get_fleet_at_point"><strong>get_fleet_at_point</strong></a>(self: 'Board', position: kaggle_environments.helpers.Point) -&gt; Union[helpers.Fleet, NoneType]</dt></dl>
+
+<dl><dt><a name="Board-get_shipyard_at_point"><strong>get_shipyard_at_point</strong></a>(self: 'Board', position: kaggle_environments.helpers.Point) -&gt; Union[helpers.Shipyard, NoneType]</dt></dl>
+
+<dl><dt><a name="Board-next"><strong>next</strong></a>(self) -&gt; 'Board'</dt><dd><tt>Returns&nbsp;a&nbsp;new&nbsp;board&nbsp;with&nbsp;the&nbsp;current&nbsp;board's&nbsp;next&nbsp;actions&nbsp;applied.<br>
+The&nbsp;current&nbsp;board&nbsp;is&nbsp;unmodified.<br>
+This&nbsp;can&nbsp;form&nbsp;a&nbsp;kore&nbsp;interpreter,&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;next_observation&nbsp;=&nbsp;<a href="#Board">Board</a>(current_observation,&nbsp;configuration,&nbsp;actions).<a href="#Board-next">next</a>().observation</tt></dd></dl>
+
+<dl><dt><a name="Board-print"><strong>print</strong></a>(self: 'Board') -&gt; None</dt></dl>
+
+<dl><dt><a name="Board-print_kore"><strong>print_kore</strong></a>(self: 'Board') -&gt; None</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>cells</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;cells&nbsp;on&nbsp;the&nbsp;current&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>configuration</strong></dt>
+</dl>
+<dl><dt><strong>current_player</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;current&nbsp;player&nbsp;(generally&nbsp;this&nbsp;is&nbsp;you).</tt></dd>
+</dl>
+<dl><dt><strong>current_player_id</strong></dt>
+</dl>
+<dl><dt><strong>fleets</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;fleets&nbsp;on&nbsp;the&nbsp;current&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>observation</strong></dt>
+<dd><tt>Converts&nbsp;a&nbsp;Board&nbsp;back&nbsp;to&nbsp;the&nbsp;normalized&nbsp;observation&nbsp;that&nbsp;constructed&nbsp;it.</tt></dd>
+</dl>
+<dl><dt><strong>opponents</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;players&nbsp;that&nbsp;aren't&nbsp;the&nbsp;current&nbsp;player.<br>
+You&nbsp;can&nbsp;get&nbsp;all&nbsp;opponent&nbsp;fleets&nbsp;with&nbsp;[fleet&nbsp;for&nbsp;fleet&nbsp;in&nbsp;player.fleets&nbsp;for&nbsp;player&nbsp;in&nbsp;board.opponents]</tt></dd>
+</dl>
+<dl><dt><strong>players</strong></dt>
+</dl>
+<dl><dt><strong>shipyards</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;shipyards&nbsp;on&nbsp;the&nbsp;current&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>step</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Cell">class <strong>Cell</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Cell">Cell</a>(position:&nbsp;kaggle_environments.helpers.Point,&nbsp;kore:&nbsp;float,&nbsp;shipyard_id:&nbsp;Union[ShipyardId,&nbsp;NoneType],&nbsp;fleet_id:&nbsp;Union[FleetId,&nbsp;NoneType],&nbsp;board:&nbsp;'<a href="#Board">Board</a>')&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Cell-__init__"><strong>__init__</strong></a>(self, position: kaggle_environments.helpers.Point, kore: float, shipyard_id: Union[ShipyardId, NoneType], fleet_id: Union[FleetId, NoneType], board: 'Board') -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Cell-neighbor"><strong>neighbor</strong></a>(self, offset: kaggle_environments.helpers.Point) -&gt; 'Cell'</dt><dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;at&nbsp;self.<strong>position</strong>&nbsp;+&nbsp;offset.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>east</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;east&nbsp;of&nbsp;this&nbsp;cell.</tt></dd>
+</dl>
+<dl><dt><strong>fleet</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;fleet&nbsp;on&nbsp;this&nbsp;cell&nbsp;if&nbsp;it&nbsp;exists&nbsp;and&nbsp;None&nbsp;otherwise.</tt></dd>
+</dl>
+<dl><dt><strong>fleet_id</strong></dt>
+</dl>
+<dl><dt><strong>kore</strong></dt>
+</dl>
+<dl><dt><strong>north</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;north&nbsp;of&nbsp;this&nbsp;cell.</tt></dd>
+</dl>
+<dl><dt><strong>position</strong></dt>
+</dl>
+<dl><dt><strong>shipyard</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;shipyard&nbsp;on&nbsp;this&nbsp;cell&nbsp;if&nbsp;it&nbsp;exists&nbsp;and&nbsp;None&nbsp;otherwise.</tt></dd>
+</dl>
+<dl><dt><strong>shipyard_id</strong></dt>
+</dl>
+<dl><dt><strong>south</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;south&nbsp;of&nbsp;this&nbsp;cell.</tt></dd>
+</dl>
+<dl><dt><strong>west</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;west&nbsp;of&nbsp;this&nbsp;cell.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Configuration">class <strong>Configuration</strong></a>(<a href="kaggle_environments.helpers.html#Configuration">kaggle_environments.helpers.Configuration</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Configuration">Configuration</a>&nbsp;provides&nbsp;access&nbsp;to&nbsp;tunable&nbsp;parameters&nbsp;in&nbsp;the&nbsp;environment.<br>
+This&nbsp;provides&nbsp;bindings&nbsp;for&nbsp;the&nbsp;configuration&nbsp;type&nbsp;described&nbsp;at&nbsp;https://github.com/Kaggle/kaggle-environments/blob/master/kaggle_environments/envs/kore/kore.json<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="helpers.html#Configuration">Configuration</a></dd>
+<dd><a href="kaggle_environments.helpers.html#Configuration">kaggle_environments.helpers.Configuration</a></dd>
+<dd><a href="builtins.html#dict">builtins.dict</a></dd>
+<dd><a href="typing.html#Generic">typing.Generic</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>agent_timeout</strong></dt>
+<dd><tt>Maximum&nbsp;runtime&nbsp;(seconds)&nbsp;to&nbsp;initialize&nbsp;an&nbsp;agent.</tt></dd>
+</dl>
+<dl><dt><strong>convert_cost</strong></dt>
+<dd><tt>The&nbsp;amount&nbsp;of&nbsp;ships&nbsp;needed&nbsp;from&nbsp;a&nbsp;fleet&nbsp;to&nbsp;create&nbsp;a&nbsp;shipyard.</tt></dd>
+</dl>
+<dl><dt><strong>max_cell_kore</strong></dt>
+<dd><tt>The&nbsp;maximum&nbsp;kore&nbsp;that&nbsp;can&nbsp;be&nbsp;in&nbsp;any&nbsp;cell.</tt></dd>
+</dl>
+<dl><dt><strong>random_seed</strong></dt>
+<dd><tt>The&nbsp;seed&nbsp;to&nbsp;the&nbsp;random&nbsp;number&nbsp;generator&nbsp;(0&nbsp;means&nbsp;no&nbsp;seed).</tt></dd>
+</dl>
+<dl><dt><strong>regen_rate</strong></dt>
+<dd><tt>The&nbsp;rate&nbsp;kore&nbsp;regenerates&nbsp;on&nbsp;the&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>The&nbsp;number&nbsp;of&nbsp;cells&nbsp;vertically&nbsp;and&nbsp;horizontally&nbsp;on&nbsp;the&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>spawn_cost</strong></dt>
+<dd><tt>The&nbsp;amount&nbsp;of&nbsp;kore&nbsp;to&nbsp;spawn&nbsp;a&nbsp;new&nbsp;ship.</tt></dd>
+</dl>
+<dl><dt><strong>starting_kore</strong></dt>
+<dd><tt>The&nbsp;starting&nbsp;amount&nbsp;of&nbsp;kore&nbsp;available&nbsp;on&nbsp;the&nbsp;board.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__parameters__</strong> = ()</dl>
+
+<hr>
+Data descriptors inherited from <a href="kaggle_environments.helpers.html#Configuration">kaggle_environments.helpers.Configuration</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>act_timeout</strong></dt>
+<dd><tt>Maximum&nbsp;runtime&nbsp;(seconds)&nbsp;to&nbsp;obtain&nbsp;an&nbsp;action&nbsp;from&nbsp;an&nbsp;agent.</tt></dd>
+</dl>
+<dl><dt><strong>episode_steps</strong></dt>
+<dd><tt>Total&nbsp;number&nbsp;of&nbsp;steps/turns&nbsp;in&nbsp;the&nbsp;run.</tt></dd>
+</dl>
+<dl><dt><strong>run_timeout</strong></dt>
+<dd><tt>Maximum&nbsp;runtime&nbsp;(seconds)&nbsp;of&nbsp;an&nbsp;episode&nbsp;(not&nbsp;necessarily&nbsp;DONE).</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="kaggle_environments.helpers.html#Configuration">kaggle_environments.helpers.Configuration</a>:<br>
+<dl><dt><strong>__orig_bases__</strong> = (typing.Dict[str, &lt;built-in function any&gt;],)</dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Configuration-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>True&nbsp;if&nbsp;the&nbsp;dictionary&nbsp;has&nbsp;the&nbsp;specified&nbsp;key,&nbsp;else&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__delitem__"><strong>__delitem__</strong></a>(self, key, /)</dt><dd><tt>Delete&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Configuration-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__setitem__"><strong>__setitem__</strong></a>(self, key, value, /)</dt><dd><tt>Set&nbsp;self[key]&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Configuration-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Configuration-get"><strong>get</strong></a>(self, key, default=None, /)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;for&nbsp;key&nbsp;if&nbsp;key&nbsp;is&nbsp;in&nbsp;the&nbsp;dictionary,&nbsp;else&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-items">items</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="Configuration-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-keys">keys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Configuration-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="Configuration-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-setdefault"><strong>setdefault</strong></a>(self, key, default=None, /)</dt><dd><tt>Insert&nbsp;key&nbsp;with&nbsp;a&nbsp;value&nbsp;of&nbsp;default&nbsp;if&nbsp;key&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;dictionary.<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;value&nbsp;for&nbsp;key&nbsp;if&nbsp;key&nbsp;is&nbsp;in&nbsp;the&nbsp;dictionary,&nbsp;else&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="Configuration-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;dict/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;is&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#Configuration-keys">keys</a>()&nbsp;method,&nbsp;then&nbsp;does:&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;is&nbsp;present&nbsp;and&nbsp;lacks&nbsp;a&nbsp;.<a href="#Configuration-keys">keys</a>()&nbsp;method,&nbsp;then&nbsp;does:&nbsp;&nbsp;for&nbsp;k,&nbsp;v&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="Configuration-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Configuration-values">values</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Configuration-fromkeys"><strong>fromkeys</strong></a>(iterable, value=None, /)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;dictionary&nbsp;with&nbsp;keys&nbsp;from&nbsp;iterable&nbsp;and&nbsp;values&nbsp;set&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Configuration-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="typing.html#Generic">typing.Generic</a>:<br>
+<dl><dt><a name="Configuration-__class_getitem__"><strong>__class_getitem__</strong></a>(params)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
+
+<dl><dt><a name="Configuration-__init_subclass__"><strong>__init_subclass__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Fleet">class <strong>Fleet</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Fleet">Fleet</a>(fleet_id:&nbsp;&amp;lt;function&nbsp;NewType.&amp;lt;locals&amp;gt;.new_type&nbsp;at&nbsp;0x7f3439510680&amp;gt;,&nbsp;ship_count:&nbsp;int,&nbsp;direction:&nbsp;kaggle_environments.helpers.Direction,&nbsp;position:&nbsp;kaggle_environments.helpers.Point,&nbsp;kore:&nbsp;int,&nbsp;flight_plan:&nbsp;str,&nbsp;player_id:&nbsp;&amp;lt;function&nbsp;NewType.&amp;lt;locals&amp;gt;.new_type&nbsp;at&nbsp;0x7f342c3d7950&amp;gt;,&nbsp;board:&nbsp;'<a href="#Board">Board</a>')&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Fleet-__init__"><strong>__init__</strong></a>(self, fleet_id: &lt;function NewType.&lt;locals&gt;.new_type at 0x7f3439510680&gt;, ship_count: int, direction: kaggle_environments.helpers.Direction, position: kaggle_environments.helpers.Point, kore: int, flight_plan: str, player_id: &lt;function NewType.&lt;locals&gt;.new_type at 0x7f342c3d7950&gt;, board: 'Board') -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Fleet-less_than_other_allied_fleet"><strong>less_than_other_allied_fleet</strong></a>(self, other)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Fleet-max_flight_plan_len_for_ship_count"><strong>max_flight_plan_len_for_ship_count</strong></a>(ship_count) -&gt; int</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;longest&nbsp;possible&nbsp;flight&nbsp;plan&nbsp;this&nbsp;fleet&nbsp;can&nbsp;be&nbsp;assigned</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>cell</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;this&nbsp;fleet&nbsp;is&nbsp;on.</tt></dd>
+</dl>
+<dl><dt><strong>collection_rate</strong></dt>
+<dd><tt>ln(ship_count)&nbsp;/&nbsp;10</tt></dd>
+</dl>
+<dl><dt><strong>direction</strong></dt>
+</dl>
+<dl><dt><strong>flight_plan</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;current&nbsp;flight&nbsp;plan&nbsp;of&nbsp;the&nbsp;fleet</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+</dl>
+<dl><dt><strong>kore</strong></dt>
+</dl>
+<dl><dt><strong>player</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;player&nbsp;that&nbsp;owns&nbsp;this&nbsp;ship.</tt></dd>
+</dl>
+<dl><dt><strong>player_id</strong></dt>
+</dl>
+<dl><dt><strong>position</strong></dt>
+</dl>
+<dl><dt><strong>ship_count</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Observation">class <strong>Observation</strong></a>(<a href="kaggle_environments.helpers.html#Observation">kaggle_environments.helpers.Observation</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Observation">Observation</a>&nbsp;primarily&nbsp;used&nbsp;as&nbsp;a&nbsp;helper&nbsp;to&nbsp;construct&nbsp;the&nbsp;<a href="#Board">Board</a>&nbsp;from&nbsp;the&nbsp;raw&nbsp;observation.<br>
+This&nbsp;provides&nbsp;bindings&nbsp;for&nbsp;the&nbsp;observation&nbsp;type&nbsp;described&nbsp;at&nbsp;https://github.com/Kaggle/kaggle-environments/blob/master/kaggle_environments/envs/kore/kore.json<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="helpers.html#Observation">Observation</a></dd>
+<dd><a href="kaggle_environments.helpers.html#Observation">kaggle_environments.helpers.Observation</a></dd>
+<dd><a href="builtins.html#dict">builtins.dict</a></dd>
+<dd><a href="typing.html#Generic">typing.Generic</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>kore</strong></dt>
+<dd><tt>Serialized&nbsp;list&nbsp;of&nbsp;available&nbsp;kore&nbsp;per&nbsp;cell&nbsp;on&nbsp;the&nbsp;board.</tt></dd>
+</dl>
+<dl><dt><strong>player</strong></dt>
+<dd><tt>The&nbsp;current&nbsp;agent's&nbsp;player&nbsp;index.</tt></dd>
+</dl>
+<dl><dt><strong>players</strong></dt>
+<dd><tt>List&nbsp;of&nbsp;players&nbsp;and&nbsp;their&nbsp;assets.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__parameters__</strong> = ()</dl>
+
+<hr>
+Data descriptors inherited from <a href="kaggle_environments.helpers.html#Observation">kaggle_environments.helpers.Observation</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>remaining_overage_time</strong></dt>
+<dd><tt>Total&nbsp;remaining&nbsp;banked&nbsp;time&nbsp;(seconds)&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;excess&nbsp;of&nbsp;per-step&nbsp;actTimeouts&nbsp;--&nbsp;agent&nbsp;is&nbsp;disqualified&nbsp;with&nbsp;TIMEOUT&nbsp;status&nbsp;when&nbsp;this&nbsp;drops&nbsp;below&nbsp;0.</tt></dd>
+</dl>
+<dl><dt><strong>step</strong></dt>
+<dd><tt>Current&nbsp;step&nbsp;within&nbsp;the&nbsp;episode.</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="kaggle_environments.helpers.html#Observation">kaggle_environments.helpers.Observation</a>:<br>
+<dl><dt><strong>__orig_bases__</strong> = (typing.Dict[str, &lt;built-in function any&gt;],)</dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Observation-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>True&nbsp;if&nbsp;the&nbsp;dictionary&nbsp;has&nbsp;the&nbsp;specified&nbsp;key,&nbsp;else&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__delitem__"><strong>__delitem__</strong></a>(self, key, /)</dt><dd><tt>Delete&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Observation-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="Observation-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Observation-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Observation-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="Observation-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="Observation-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Observation-__setitem__"><strong>__setitem__</strong></a>(self, key, value, /)</dt><dd><tt>Set&nbsp;self[key]&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="Observation-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Observation-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="Observation-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Observation-get"><strong>get</strong></a>(self, key, default=None, /)</dt><dd><tt>Return&nbsp;the&nbsp;value&nbsp;for&nbsp;key&nbsp;if&nbsp;key&nbsp;is&nbsp;in&nbsp;the&nbsp;dictionary,&nbsp;else&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="Observation-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-items">items</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="Observation-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-keys">keys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Observation-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="Observation-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="Observation-setdefault"><strong>setdefault</strong></a>(self, key, default=None, /)</dt><dd><tt>Insert&nbsp;key&nbsp;with&nbsp;a&nbsp;value&nbsp;of&nbsp;default&nbsp;if&nbsp;key&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;dictionary.<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;value&nbsp;for&nbsp;key&nbsp;if&nbsp;key&nbsp;is&nbsp;in&nbsp;the&nbsp;dictionary,&nbsp;else&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="Observation-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;dict/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;is&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#Observation-keys">keys</a>()&nbsp;method,&nbsp;then&nbsp;does:&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;is&nbsp;present&nbsp;and&nbsp;lacks&nbsp;a&nbsp;.<a href="#Observation-keys">keys</a>()&nbsp;method,&nbsp;then&nbsp;does:&nbsp;&nbsp;for&nbsp;k,&nbsp;v&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="Observation-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Observation-values">values</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="builtins.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Observation-fromkeys"><strong>fromkeys</strong></a>(iterable, value=None, /)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;dictionary&nbsp;with&nbsp;keys&nbsp;from&nbsp;iterable&nbsp;and&nbsp;values&nbsp;set&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><a name="Observation-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="builtins.html#dict">builtins.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="typing.html#Generic">typing.Generic</a>:<br>
+<dl><dt><a name="Observation-__class_getitem__"><strong>__class_getitem__</strong></a>(params)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
+
+<dl><dt><a name="Observation-__init_subclass__"><strong>__init_subclass__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Player">class <strong>Player</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Player">Player</a>(player_id:&nbsp;&amp;lt;function&nbsp;NewType.&amp;lt;locals&amp;gt;.new_type&nbsp;at&nbsp;0x7f342c3d7950&amp;gt;,&nbsp;kore:&nbsp;int,&nbsp;shipyard_ids:&nbsp;List[ShipyardId],&nbsp;fleet_ids:&nbsp;List[FleetId],&nbsp;board:&nbsp;'<a href="#Board">Board</a>')&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Player-__init__"><strong>__init__</strong></a>(self, player_id: &lt;function NewType.&lt;locals&gt;.new_type at 0x7f342c3d7950&gt;, kore: int, shipyard_ids: List[ShipyardId], fleet_ids: List[FleetId], board: 'Board') -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>fleet_ids</strong></dt>
+</dl>
+<dl><dt><strong>fleets</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;fleets&nbsp;owned&nbsp;by&nbsp;this&nbsp;player.</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+</dl>
+<dl><dt><strong>is_current_player</strong></dt>
+<dd><tt>Returns&nbsp;whether&nbsp;this&nbsp;player&nbsp;is&nbsp;the&nbsp;current&nbsp;player&nbsp;(generally&nbsp;if&nbsp;this&nbsp;returns&nbsp;True,&nbsp;this&nbsp;player&nbsp;is&nbsp;you).</tt></dd>
+</dl>
+<dl><dt><strong>kore</strong></dt>
+</dl>
+<dl><dt><strong>next_actions</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;queued&nbsp;fleet&nbsp;and&nbsp;shipyard&nbsp;actions&nbsp;for&nbsp;this&nbsp;player&nbsp;formatted&nbsp;for&nbsp;the&nbsp;kore&nbsp;interpreter&nbsp;to&nbsp;receive&nbsp;as&nbsp;an&nbsp;agent&nbsp;response.</tt></dd>
+</dl>
+<dl><dt><strong>shipyard_ids</strong></dt>
+</dl>
+<dl><dt><strong>shipyards</strong></dt>
+<dd><tt>Returns&nbsp;all&nbsp;shipyards&nbsp;owned&nbsp;by&nbsp;this&nbsp;player.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Shipyard">class <strong>Shipyard</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Shipyard">Shipyard</a>(shipyard_id:&nbsp;&amp;lt;function&nbsp;NewType.&amp;lt;locals&amp;gt;.new_type&nbsp;at&nbsp;0x7f342c3d78c0&amp;gt;,&nbsp;ship_count:&nbsp;int,&nbsp;position:&nbsp;kaggle_environments.helpers.Point,&nbsp;player_id:&nbsp;&amp;lt;function&nbsp;NewType.&amp;lt;locals&amp;gt;.new_type&nbsp;at&nbsp;0x7f342c3d7950&amp;gt;,&nbsp;turns_controlled:&nbsp;int,&nbsp;board:&nbsp;'<a href="#Board">Board</a>',&nbsp;next_action:&nbsp;Union[helpers.<a href="#ShipyardAction">ShipyardAction</a>,&nbsp;NoneType]&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Shipyard-__init__"><strong>__init__</strong></a>(self, shipyard_id: &lt;function NewType.&lt;locals&gt;.new_type at 0x7f342c3d78c0&gt;, ship_count: int, position: kaggle_environments.helpers.Point, player_id: &lt;function NewType.&lt;locals&gt;.new_type at 0x7f342c3d7950&gt;, turns_controlled: int, board: 'Board', next_action: Union[helpers.ShipyardAction, NoneType] = None) -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>cell</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;cell&nbsp;this&nbsp;shipyard&nbsp;is&nbsp;on.</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+</dl>
+<dl><dt><strong>max_spawn</strong></dt>
+</dl>
+<dl><dt><strong>next_action</strong></dt>
+<dd><tt>Returns&nbsp;the&nbsp;action&nbsp;that&nbsp;will&nbsp;be&nbsp;executed&nbsp;by&nbsp;this&nbsp;shipyard&nbsp;when&nbsp;Board.next()&nbsp;is&nbsp;called&nbsp;(when&nbsp;the&nbsp;current&nbsp;turn&nbsp;ends).</tt></dd>
+</dl>
+<dl><dt><strong>player</strong></dt>
+</dl>
+<dl><dt><strong>player_id</strong></dt>
+</dl>
+<dl><dt><strong>position</strong></dt>
+</dl>
+<dl><dt><strong>ship_count</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ShipyardAction">class <strong>ShipyardAction</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ShipyardAction">ShipyardAction</a>(type:&nbsp;helpers.<a href="#ShipyardActionType">ShipyardActionType</a>,&nbsp;num_ships:&nbsp;Union[int,&nbsp;NoneType],&nbsp;flight_plan:&nbsp;Union[str,&nbsp;NoneType])&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ShipyardAction-__init__"><strong>__init__</strong></a>(self, type: helpers.ShipyardActionType, num_ships: Union[int, NoneType], flight_plan: Union[str, NoneType]) -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ShipyardAction-__str__"><strong>__str__</strong></a>(self) -&gt; str</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="ShipyardAction-from_str"><strong>from_str</strong></a>(raw: str)</dt></dl>
+
+<dl><dt><a name="ShipyardAction-launch_fleet_in_direction"><strong>launch_fleet_in_direction</strong></a>(number_ships: int, direction: kaggle_environments.helpers.Direction)</dt></dl>
+
+<dl><dt><a name="ShipyardAction-launch_fleet_with_flight_plan"><strong>launch_fleet_with_flight_plan</strong></a>(number_ships: int, flight_plan: str)</dt></dl>
+
+<dl><dt><a name="ShipyardAction-spawn_ships"><strong>spawn_ships</strong></a>(number_ships: int)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>action_type</strong></dt>
+</dl>
+<dl><dt><strong>flight_plan</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<dl><dt><strong>num_ships</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ShipyardActionType">class <strong>ShipyardActionType</strong></a>(<a href="enum.html#Enum">enum.Enum</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ShipyardActionType">ShipyardActionType</a>(value,&nbsp;names=None,&nbsp;*,&nbsp;module=None,&nbsp;qualname=None,&nbsp;type=None,&nbsp;start=1)<br>
+&nbsp;<br>
+An&nbsp;enumeration.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="helpers.html#ShipyardActionType">ShipyardActionType</a></dd>
+<dd><a href="enum.html#Enum">enum.Enum</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>LAUNCH</strong> = &lt;ShipyardActionType.LAUNCH: 2&gt;</dl>
+
+<dl><dt><strong>SPAWN</strong> = &lt;ShipyardActionType.SPAWN: 1&gt;</dl>
+
+<hr>
+Data descriptors inherited from <a href="enum.html#Enum">enum.Enum</a>:<br>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>The&nbsp;name&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</tt></dd>
+</dl>
+<dl><dt><strong>value</strong></dt>
+<dd><tt>The&nbsp;value&nbsp;of&nbsp;the&nbsp;Enum&nbsp;member.</tt></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="enum.html#EnumMeta">enum.EnumMeta</a>:<br>
+<dl><dt><strong>__members__</strong></dt>
+<dd><tt>Returns&nbsp;a&nbsp;mapping&nbsp;of&nbsp;member&nbsp;name-&gt;value.<br>
+&nbsp;<br>
+This&nbsp;mapping&nbsp;lists&nbsp;all&nbsp;enum&nbsp;members,&nbsp;including&nbsp;aliases.&nbsp;Note&nbsp;that&nbsp;this<br>
+is&nbsp;a&nbsp;read-only&nbsp;view&nbsp;of&nbsp;the&nbsp;internal&nbsp;mapping.</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-board_agent"><strong>board_agent</strong></a>(agent: Callable[[helpers.Board], NoneType])</dt><dd><tt>Decorator&nbsp;used&nbsp;to&nbsp;create&nbsp;an&nbsp;agent&nbsp;that&nbsp;modifies&nbsp;a&nbsp;board&nbsp;rather&nbsp;than&nbsp;an&nbsp;observation&nbsp;and&nbsp;a&nbsp;configuration<br>
+Automatically&nbsp;returns&nbsp;the&nbsp;modified&nbsp;board's&nbsp;next&nbsp;actions<br>
+&nbsp;<br>
+@board_agent<br>
+def&nbsp;my_agent(board:&nbsp;<a href="#Board">Board</a>)&nbsp;-&gt;&nbsp;None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;...</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AbstractSet</strong> = typing.AbstractSet<br>
+<strong>Any</strong> = typing.Any<br>
+<strong>AnyStr</strong> = ~AnyStr<br>
+<strong>AsyncContextManager</strong> = typing.AbstractAsyncContextManager<br>
+<strong>AsyncGenerator</strong> = typing.AsyncGenerator<br>
+<strong>AsyncIterable</strong> = typing.AsyncIterable<br>
+<strong>AsyncIterator</strong> = typing.AsyncIterator<br>
+<strong>Awaitable</strong> = typing.Awaitable<br>
+<strong>ByteString</strong> = typing.ByteString<br>
+<strong>Callable</strong> = typing.Callable<br>
+<strong>ChainMap</strong> = typing.ChainMap<br>
+<strong>ClassVar</strong> = typing.ClassVar<br>
+<strong>Collection</strong> = typing.Collection<br>
+<strong>Container</strong> = typing.Container<br>
+<strong>ContextManager</strong> = typing.AbstractContextManager<br>
+<strong>Coroutine</strong> = typing.Coroutine<br>
+<strong>Counter</strong> = typing.Counter<br>
+<strong>DefaultDict</strong> = typing.DefaultDict<br>
+<strong>Deque</strong> = typing.Deque<br>
+<strong>Dict</strong> = typing.Dict<br>
+<strong>FrozenSet</strong> = typing.FrozenSet<br>
+<strong>Generator</strong> = typing.Generator<br>
+<strong>Hashable</strong> = typing.Hashable<br>
+<strong>ItemsView</strong> = typing.ItemsView<br>
+<strong>Iterable</strong> = typing.Iterable<br>
+<strong>Iterator</strong> = typing.Iterator<br>
+<strong>KeysView</strong> = typing.KeysView<br>
+<strong>List</strong> = typing.List<br>
+<strong>Mapping</strong> = typing.Mapping<br>
+<strong>MappingView</strong> = typing.MappingView<br>
+<strong>MutableMapping</strong> = typing.MutableMapping<br>
+<strong>MutableSequence</strong> = typing.MutableSequence<br>
+<strong>MutableSet</strong> = typing.MutableSet<br>
+<strong>NoReturn</strong> = typing.NoReturn<br>
+<strong>Optional</strong> = typing.Optional<br>
+<strong>OrderedDict</strong> = typing.OrderedDict<br>
+<strong>Reversible</strong> = typing.Reversible<br>
+<strong>SPAWN_VALUES</strong> = [2, 7, 17, 34, 60, 97, 147, 212, 294]<br>
+<strong>Sequence</strong> = typing.Sequence<br>
+<strong>Set</strong> = typing.Set<br>
+<strong>Sized</strong> = typing.Sized<br>
+<strong>TYPE_CHECKING</strong> = False<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>Type</strong> = typing.Type<br>
+<strong>Union</strong> = typing.Union<br>
+<strong>ValuesView</strong> = typing.ValuesView<br>
+<strong>current</strong> = 294<br>
+<strong>t</strong> = 82<br>
+<strong>upgrade_times</strong> = [2, 5, 10, 17, 26, 37, 50, 65, 82]</td></tr></table>
+</body></html>
